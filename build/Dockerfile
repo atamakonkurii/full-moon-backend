@@ -8,5 +8,5 @@ RUN apk update && apk add git
 WORKDIR /go/src/github.com/full-moon-backend
 # ホストのファイルをコンテナの作業ディレクトリに移行
 ADD . /go/src/github.com/full-moon-backend
-# # パッケージのインポート
+# パッケージのインポート
 # RUN go get -u golang.org/x/tools/cmd/goimports
