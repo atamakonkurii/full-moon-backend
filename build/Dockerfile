@@ -5,8 +5,8 @@ RUN apk update && apk add git
 # full-moon-backendディレクトリの作成
 # RUN mkdir /go/src/github.com/full-moon-backend
 # ワーキングディレクトリの設定
-WORKDIR /go/src/github.com/full-moon-backend
+WORKDIR /go/src/github.com
 # ホストのファイルをコンテナの作業ディレクトリに移行
-ADD . /go/src/github.com/full-moon-backend
+ADD . /go/src/github.com
 # パッケージのインポート
 # RUN go get -u golang.org/x/tools/cmd/goimports
