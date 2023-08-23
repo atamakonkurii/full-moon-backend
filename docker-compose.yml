@@ -1,0 +1,16 @@
+version: '3'
+services:
+  full-moon-backend:
+    container_name: full-moon-backend
+    build: # ビルドに使うDockerファイルのパス
+      context: .
+      dockerfile: ./build/Dockerfile
+    volumes: # マウントディレクトリ
+      - ./full-moon-backend:/go/src/github.com/full-moon-backend
+    tty: true # コンテナの永続化
+    env_file: # .envファイル
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+    - "8080:8080"
