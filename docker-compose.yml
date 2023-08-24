@@ -1,16 +1,36 @@
-version: '3'
+version: '3.9'
 services:
-  full-moon-backend:
+  app:
     container_name: full-moon-backend
+    depends_on:
+      - db
     build: # ビルドに使うDockerファイルのパス
       context: .
-      dockerfile: ./build/Dockerfile
+      dockerfile: ./docker/app/Dockerfile
     volumes: # マウントディレクトリ
-      - ./:/go/src/github.com
+      - ./:/go/src/app
     tty: true # コンテナの永続化
     env_file: # .envファイル
-      - ./build/.go_env
+      - ./docker/.go_env
     environment:
       - TZ=Asia/Tokyo
     ports:
     - "8080:8080"
+
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    image: devenv/postgresql
+    env_file:
+      - docker/db/variable.env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --locale=C'
+
+volumes:
+  postgresql_data:

@@ -13,3 +13,11 @@ docker-compose exec bash
 ```
 go run ./server.go
 ```
+
+```
+docker-compose exec db /bin/bash
+
+psql -U postgres
+
+
+```
