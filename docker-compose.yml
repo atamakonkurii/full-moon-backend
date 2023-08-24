@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./build/Dockerfile
     volumes: # マウントディレクトリ
-      - ./full-moon-backend:/go/src/github.com/full-moon-backend
+      - ./:/go/src/github.com
     tty: true # コンテナの永続化
     env_file: # .envファイル
       - ./build/.go_env

@@ -8,5 +8,7 @@ RUN apk update && apk add git
 WORKDIR /go/src/github.com
 # ホストのファイルをコンテナの作業ディレクトリに移行
 ADD . /go/src/github.com
+# gqlgenのインストール
+RUN go install github.com/99designs/gqlgen@latest
 # パッケージのインポート
-# RUN go get -u golang.org/x/tools/cmd/goimports
+RUN go get -u golang.org/x/tools/cmd/goimports
