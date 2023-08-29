@@ -2,6 +2,7 @@ package main
 
 import (
 	"full_moon_gql_server/graph"
+	"full_moon_gql_server/internal"
 	"log"
 	"net/http"
 	"os"
@@ -17,8 +18,8 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
-
-	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	
+	srv := handler.NewDefaultServer(internal.NewExecutableSchema(internal.Config{Resolvers: &graph.Resolver{}}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
