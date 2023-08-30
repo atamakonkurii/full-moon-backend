@@ -1,7 +1,7 @@
 # goバージョン
 FROM golang:1.21.0-alpine
 # アップデートとgitのインストール
-RUN apk update && apk add git && apk add curl
+RUN apk update && apk add git
 # full-moon-backendディレクトリの作成
 RUN mkdir /go/src/app
 # ワーキングディレクトリの設定

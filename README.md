@@ -21,3 +21,20 @@ psql -U postgres
 
 
 ```
+
+```
+## full-moon-backend
+
+migrate create -ext sql -dir db/migrations -seq create_bookmarks_table
+
+export POSTGRESQL_URL=postgres://postgres:password@db:5432/postgres?sslmode=disable
+
+migrate -database ${POSTGRESQL_URL} -path db/migrations up 1
+```
+```
+## db
+
+export POSTGRESQL_URL=postgres://postgres:password@db:5432/postgres?sslmode=disable
+
+psql ${POSTGRESQL_URL}
+```
