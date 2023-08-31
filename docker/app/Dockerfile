@@ -14,3 +14,5 @@ ADD . /go/src/app
 RUN go get -u golang.org/x/tools/cmd/goimports
 # golang-migrateのインストール
 RUN go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+# shellの実行
+ENTRYPOINT [ "./docker/app/entrypoint.sh" ]
