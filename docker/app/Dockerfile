@@ -1,5 +1,5 @@
 # goバージョン
-FROM golang:1.21.0-alpine
+FROM --platform=linux/arm64 golang:1.21.0-alpine
 # アップデートとgitのインストール
 RUN apk update && apk add git
 # full-moon-backendディレクトリの作成
@@ -12,5 +12,10 @@ RUN go install github.com/99designs/gqlgen@latest
 ADD . /go/src/app
 # パッケージのインポート
 RUN go get -u golang.org/x/tools/cmd/goimports
-# postgres ドライバーのインストール
-RUN go get github.com/lib/pq
+# golang-migrateのインストール
+RUN go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+# shell scriptの実行
+COPY /docker/app/ /go/src/app/
+RUN chmod +x ./docker/app/entrypoint.sh
+ENTRYPOINT [ "./docker/app/entrypoint.sh" ]
+

@@ -20,6 +20,7 @@ func main() {
     // Db: データベースに接続するためのハンドラ
     var Db *sql.DB
     // Dbの初期化
+    // export POSTGRESQL_URL=postgres://postgres:password@localhost:5432/admin?sslmode=disable
     Db, err := sql.Open("postgres", "host=db port=5432 user=postgres password=password dbname=full_moon_db sslmode=disable")
     if err != nil {
         log.Fatal(err)
